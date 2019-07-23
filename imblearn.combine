@@ -1,0 +1,24 @@
+From imblearn.combine import SMOTEENN
+sm = SMOTEENN()
+
+y = df['Default'].values
+X = df.drop(['Default'], axis=1).values
+
+X_resampled, y_resampled = sm.fit_sample(X, y)
+
+X_train, X_test, y_train, y_test = train_test_split(X_resampled, y_resampled, test_size = 0.25, random_state=0)
+
+ValueError                                Traceback (most recent call last)
+<ipython-input-6-0372a1133cd1> in <module>
+    111 X = df.drop(['Default'], axis=1).values
+    112 
+--> 113 X_resampled, y_resampled = sm.fit_sample(X, y)
+    114 
+    115 X_train, X_test, y_train, y_test = train_test_split(X_resampled, y_resampled, test_size = 0.25, random_state=0)
+
+~\AppData\Local\Continuum\anaconda3\lib\site-packages\imblearn\base.py in fit_resample(self, X, y)
+     77 
+     78         check_classification_targets(y)
+---> 79         X, y, binarize_y = self._check_X_y(X, y)
+     80 
+     81         self.sampling_strategy_ = check_sampling_strategy(
